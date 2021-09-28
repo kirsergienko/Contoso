@@ -6,7 +6,7 @@
 
         public int Year { get; set; }
 
-        public string Month { get; set; }
+        public int Month { get; set; }
 
         public string DeviceType { get; set; }
 

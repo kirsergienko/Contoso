@@ -1,10 +1,8 @@
 ﻿using Contoso.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Contoso.Controllers
 {
@@ -13,68 +11,58 @@ namespace Contoso.Controllers
         MyDbContext context = new MyDbContext();
         List<RegistrationByMonth> registrations = new List<RegistrationByMonth>();
 
-        // GET: api/Registration
-        public List<RegistrationByMonth> Get()
-        {
-            foreach (var item in context.RegistrationsByMonth)
-            {
-                registrations.Add(item);
-            }
-
-            return registrations;
-        }
-        
-        [Route("api/registration/bymonth/{month}")]
-        [HttpGet]
-        public List<RegistrationByMonth> ByMonths(string month)
+        [System.Web.Http.Route("api/registration/bymonth/{month}")]
+        [System.Web.Http.HttpGet]
+        public ActionResult ByMonths(string month)
         {
             int Year = int.Parse(month.Substring(0, 4));
 
-            int x = int.Parse(month.Substring(4, 2));
+            int _Month = int.Parse(month.Substring(4, 2));
 
-            string _Month = MonthIntToString(x);
+            return CreateOutput(Year, _Month);
 
+        }
+
+        [System.Web.Http.Route("api/registration/bymonth")]
+        [System.Web.Http.HttpGet]
+        public ActionResult ByMonths()
+        {
+            return CreateOutput(2021, 12);
+        }
+
+
+        public ActionResult CreateOutput(int Year, int _Month)
+        {
+            int registredUsers = 0;
+
+            List<Device> devices = new List<Device>();
+
+            foreach (var item in context.ByDevicesAndMonths.Where(x => x.Month == _Month).Where(x => x.Year == Year))
+            {
+                registredUsers += item.NumberOfUsers;
+            }
             foreach (var item in context.RegistrationsByMonth.Where(x => x.Month == _Month).Where(x => x.Year == Year))
             {
-                registrations.Add(item);
+                registredUsers += item.NumberOfUsers;
             }
-
-            return registrations;
-        }
-
-        [Route("api/registration/bymonth")]
-        [HttpGet]
-        public List<RegistrationByMonth> ByMonths()
-        {
-            foreach (var item in context.RegistrationsByMonth.Where(x => x.Month == "December"))
+            foreach (var item in context.ByDevicesAndMonths.Where(x => x.Month == _Month).Where(x => x.Year == Year).GroupBy(x => x.DeviceType))
             {
-                registrations.Add(item);
+                devices.Add(new Device { DeviceType = item.Key, Value = item.Count() });
             }
-
-            return registrations;
-        }
-
-        public string MonthIntToString(int month)
-        {
-            switch (month)
+            if (registredUsers > 0)
             {
-                case 1: return "January";
-                case 2: return "February ";
-                case 3: return "March";
-                case 4: return "April";
-                case 5: return "May";
-                case 6: return "June";
-                case 7: return "July";
-                case 8: return "August";
-                case 9: return "September";
-                case 10: return "October";
-                case 11: return "November ";
-                case 12: return "December";
-                default: return "December";
+                JsonResult jsonResult = new JsonResult();
+
+                jsonResult.Data = new RegistrationOutput { Month = _Month, Year = Year, Users = registredUsers, Devices = devices };
+
+                return jsonResult;
+            }
+            else
+            {
+                return new HttpNotFoundResult();
             }
 
         }
 
-     
     }
 }

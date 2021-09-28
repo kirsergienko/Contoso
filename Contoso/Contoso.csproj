@@ -171,8 +171,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ByDeviceAndMonth.cs" />
+    <Compile Include="Models\Device.cs" />
     <Compile Include="Models\LoggedInFromMoreThanOneDevice.cs" />
     <Compile Include="Models\MyDbContext.cs" />
+    <Compile Include="Models\RegistrationOutput.cs" />
     <Compile Include="Models\RegistrationByMonth.cs" />
     <Compile Include="Models\SessionDuration.cs" />
     <Compile Include="Models\SessionForHour.cs" />

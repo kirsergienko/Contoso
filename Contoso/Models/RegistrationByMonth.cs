@@ -8,7 +8,7 @@ namespace Contoso.Models
 
         public int Year { get; set; }
 
-        public string Month { get; set; }
+        public int Month { get; set; }
 
         public int NumberOfUsers { get; set; }
     }
