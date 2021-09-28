@@ -170,15 +170,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ByDeviceAndMonth.cs" />
+    <Compile Include="Models\Tables\ByDeviceAndMonth.cs" />
     <Compile Include="Models\Device.cs" />
-    <Compile Include="Models\LoggedInFromMoreThanOneDevice.cs" />
+    <Compile Include="Models\Tables\LoggedInFromMoreThanOneDevice.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\RegistrationOutput.cs" />
-    <Compile Include="Models\RegistrationByMonth.cs" />
-    <Compile Include="Models\SessionDuration.cs" />
-    <Compile Include="Models\SessionForHour.cs" />
-    <Compile Include="Models\UserWithNewCountry.cs" />
+    <Compile Include="Models\Tables\RegistrationByMonth.cs" />
+    <Compile Include="Models\Tables\SessionDuration.cs" />
+    <Compile Include="Models\Tables\SessionForHour.cs" />
+    <Compile Include="Models\Tables\UserWithNewCountry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
