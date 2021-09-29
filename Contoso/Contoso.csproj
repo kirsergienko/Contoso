@@ -181,6 +181,7 @@
     <Compile Include="Models\Tables\SessionDuration.cs" />
     <Compile Include="Models\Tables\SessionForHour.cs" />
     <Compile Include="Models\Tables\UserWithNewCountry.cs" />
+    <Compile Include="Models\UsersOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -83,13 +83,11 @@ namespace Contoso.Controllers
                     }
                 }
             }
-            if (dates.Count > 0)
-            {
-                return new SessionsOutput { Dates = dates };
-            }
-            else return new System.Web.Mvc.HttpNotFoundResult();
+
+            return new SessionsOutput { Dates = dates };
+
         }
 
-        
+
     }
 }
