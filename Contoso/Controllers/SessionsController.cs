@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contoso.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,8 @@ namespace Contoso.Controllers
 {
     public class SessionsController : ApiController
     {
-       
+        MyDbContext context = new MyDbContext();
+
+
     }
 }

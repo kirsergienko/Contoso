@@ -14,10 +14,20 @@ namespace Contoso.Controllers
         [System.Web.Http.HttpGet]
         public object ByMonths(string month)
         {
-            int Year = int.Parse(month.Substring(0, 4));
+            int Year;
+            int _Month;
 
-            int _Month = int.Parse(month.Substring(4, 2));
-
+            if (int.TryParse(month.Substring(0, 4), out int m) &&
+                int.TryParse(month.Substring(4, 2), out int y))
+            {
+                Year = y;
+                _Month = m;
+            }
+            else
+            {
+                Year = 2021;
+                _Month = 12;
+            }
             return CreateOutput(Year, _Month);
 
         }
