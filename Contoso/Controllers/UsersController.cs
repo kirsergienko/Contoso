@@ -12,7 +12,7 @@ namespace Contoso.Controllers
     {
         MyDbContext context = new MyDbContext();
 
-        [Route("apiUrl}/api/users/anomalies")]
+        [Route("api/users/anomalies")]
         [HttpGet]
         public object Get()
         {
