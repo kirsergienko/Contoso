@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace Contoso.Controllers
 {
@@ -10,8 +9,8 @@ namespace Contoso.Controllers
     {
         MyDbContext context = new MyDbContext();
 
-        [System.Web.Http.Route("api/registration/bymonth/{month}")]
-        [System.Web.Http.HttpGet]
+        [Route("api/registration/bymonth/{month}")]
+        [HttpGet]
         public object ByMonths(string month)
         {
             int Year;
@@ -24,7 +23,7 @@ namespace Contoso.Controllers
             }
             catch
             {
-                return new HttpNotFoundResult();
+                return new System.Web.Mvc.HttpNotFoundResult();
             }
             
 
@@ -32,8 +31,8 @@ namespace Contoso.Controllers
 
         }
 
-        [System.Web.Http.Route("api/registration/bymonth")]
-        [System.Web.Http.HttpGet]
+        [Route("api/registration/bymonth")]
+        [HttpGet]
         public object ByMonths()
         {
             return CreateOutput(2021, 12);
@@ -63,7 +62,7 @@ namespace Contoso.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return new System.Web.Mvc.HttpNotFoundResult();
             }
 
         }
