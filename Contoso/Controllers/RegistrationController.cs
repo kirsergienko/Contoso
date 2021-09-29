@@ -16,18 +16,18 @@ namespace Contoso.Controllers
         {
             int Year;
             int _Month;
+            try
+            {
+                Year = int.Parse(month.Substring(0, 4));
 
-            if (int.TryParse(month.Substring(0, 4), out int m) &&
-                int.TryParse(month.Substring(4, 2), out int y))
-            {
-                Year = y;
-                _Month = m;
+                _Month = int.Parse(month.Substring(4, 2));
             }
-            else
+            catch
             {
-                Year = 2021;
-                _Month = 12;
+                return new HttpNotFoundResult();
             }
+            
+
             return CreateOutput(Year, _Month);
 
         }
