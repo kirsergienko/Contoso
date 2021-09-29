@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Contoso.Controllers
 {
+    /// <summary>
+    /// A controller that outputs information about users and devices, sorted by month, in JSON format.
+    /// </summary>
+
     public class RegistrationController : ApiController
     {
         MyDbContext context = new MyDbContext();
 
+        /// <summary>
+        /// Gets information about users and their device, grouped by selected month.
+        /// </summary>
+        /// <param name="month">Month by which the records will be grouped.</param>
+        /// <returns>Information about users and their devices for one month in JSON format.</returns>
         [Route("api/registration/bymonth/{month}")]
         [HttpGet]
         public object ByMonths(string month)
@@ -30,14 +40,17 @@ namespace Contoso.Controllers
             return CreateOutput(Year, _Month);
 
         }
-
+        /// <summary>
+        /// Gets information about users and their device, grouped by default month.
+        /// </summary>
+        /// <returns>Information about users and their devices for default month in JSON format.</returns>
         [Route("api/registration/bymonth")]
         [HttpGet]
         public object ByMonths()
         {
             return CreateOutput(2021, 12);
         }
-
+        [ApiExplorerSettings(IgnoreApi = true)]
         public object CreateOutput(int Year, int _Month)
         {
             int registredUsers = 0;

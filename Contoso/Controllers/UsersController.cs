@@ -1,17 +1,21 @@
 ﻿using Contoso.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace Contoso.Controllers
 {
+    /// <summary>
+    /// List of users and devices with concurrent logins extended with the last occurence of the login from unexpected country.
+    /// </summary>
     public class UsersController : ApiController
     {
         MyDbContext context = new MyDbContext();
 
+        /// <summary>
+        /// Gets information about all anomalies.
+        /// </summary>
+        /// <returns>Information about logins with different devices and new countries in JSON format.</returns>
         [Route("api/users/anomalies")]
         [HttpGet]
         public object Get()
@@ -19,6 +23,7 @@ namespace Contoso.Controllers
             return CreateResult();
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public object CreateResult()
         {
             List<User> users = new List<User>();
