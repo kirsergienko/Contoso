@@ -9,11 +9,10 @@ namespace Contoso.Controllers
     public class RegistrationController : ApiController
     {
         MyDbContext context = new MyDbContext();
-        List<RegistrationByMonth> registrations = new List<RegistrationByMonth>();
 
         [System.Web.Http.Route("api/registration/bymonth/{month}")]
         [System.Web.Http.HttpGet]
-        public ActionResult ByMonths(string month)
+        public object ByMonths(string month)
         {
             int Year = int.Parse(month.Substring(0, 4));
 
@@ -25,13 +24,12 @@ namespace Contoso.Controllers
 
         [System.Web.Http.Route("api/registration/bymonth")]
         [System.Web.Http.HttpGet]
-        public ActionResult ByMonths()
+        public object ByMonths()
         {
             return CreateOutput(2021, 12);
         }
 
-
-        public ActionResult CreateOutput(int Year, int _Month)
+        public object CreateOutput(int Year, int _Month)
         {
             int registredUsers = 0;
 
@@ -51,11 +49,7 @@ namespace Contoso.Controllers
             }
             if (registredUsers > 0)
             {
-                JsonResult jsonResult = new JsonResult();
-
-                jsonResult.Data = new RegistrationOutput { Month = _Month, Year = Year, Users = registredUsers, Devices = devices };
-
-                return jsonResult;
+                return new RegistrationOutput { Month = _Month, Year = Year, Users = registredUsers, Devices = devices };
             }
             else
             {
