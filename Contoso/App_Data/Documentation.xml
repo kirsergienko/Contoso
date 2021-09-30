@@ -503,7 +503,7 @@
             <summary>
             Login hourly stats endpoint returning number of concurrent logins, total session time for the hour, and
             cumulative time for the hour.Request should accept start and end time parameters.Both parameters are
-            optional. Example of point: "1000-01-01 12:00:00".
+            optional. Example of point: "2021-01-01 12:00:00".
             </summary>
         </member>
         <member name="M:Contoso.Controllers.SessionsController.GetAllData">

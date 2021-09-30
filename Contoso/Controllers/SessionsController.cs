@@ -42,9 +42,20 @@ namespace Contoso.Controllers
         [HttpGet]
         public object StartAndEndPoints(string startTime, string endTime)
         {
-            DateTime start = DateTime.Parse(startTime);
+            DateTime start;
 
-            DateTime end = DateTime.Parse(endTime);
+            DateTime end;
+            try
+            {
+                start = DateTime.Parse(startTime);
+
+                end = DateTime.Parse(endTime);
+            }
+            catch
+            {
+                return CreateResult(DateTime.Parse("1000-01-01 12:00:00"), DateTime.Parse("9999-01-01 12:00:00"));
+            }
+
 
             return CreateResult(start, end);
         }
@@ -57,9 +68,19 @@ namespace Contoso.Controllers
         [HttpGet]
         public object StartPoint(string startTime)
         {
-            DateTime start = DateTime.Parse(startTime);
+            DateTime start;
 
-            DateTime end = DateTime.Parse("9999-01-01 12:00:00");
+            DateTime end;
+            try
+            {
+                start = DateTime.Parse(startTime);
+
+                end = DateTime.Parse("9999-01-01 12:00:00");
+            }
+            catch
+            {
+                return CreateResult(DateTime.Parse("1000-01-01 12:00:00"), DateTime.Parse("9999-01-01 12:00:00"));
+            }
 
             return CreateResult(start, end);
         }
@@ -72,9 +93,19 @@ namespace Contoso.Controllers
         [HttpGet]
         public object EndPoint(string endTime)
         {
-            DateTime start = DateTime.Parse("1000-01-01 12:00:00");
+            DateTime start;
 
-            DateTime end = DateTime.Parse(endTime);
+            DateTime end;
+            try
+            {
+                start = DateTime.Parse("1000-01-01 12:00:00");
+
+                end = DateTime.Parse(endTime);
+            }
+            catch
+            {
+                return CreateResult(DateTime.Parse("1000-01-01 12:00:00"), DateTime.Parse("9999-01-01 12:00:00"));
+            }
 
             return CreateResult(start, end);
         }
