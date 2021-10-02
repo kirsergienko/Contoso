@@ -117,8 +117,8 @@ namespace Contoso.Controllers
 
             foreach (var item in context.SessionsDuration)
             {
-                if (DateTime.Parse($"{item.Date.ToString("yyyy-MM-dd")} {item.Hour}:00:00").CompareTo(startTime) == 1 &&
-                    DateTime.Parse($"{item.Date.ToString("yyyy-MM-dd")} {item.Hour}:00:00").CompareTo(endTime) == -1)
+                if (DateTime.Parse($"{item.Date.ToString("yyyy-MM-dd")} {item.Hour}:00:00").CompareTo(startTime) >= 0 &&
+                    DateTime.Parse($"{item.Date.ToString("yyyy-MM-dd")} {item.Hour}:00:00").CompareTo(endTime) <= 0)
                 {
                     dates.Add(new Date
                     {
