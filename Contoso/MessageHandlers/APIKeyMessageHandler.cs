@@ -28,6 +28,10 @@ namespace Contoso.MessageHandlers
                     validKey = true;
                 }
             }
+            else
+            {
+                return message.CreateResponse(HttpStatusCode.Unauthorized, "API Key is not found");
+            }
 
             if (!validKey)
             {

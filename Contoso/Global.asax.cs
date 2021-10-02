@@ -13,10 +13,6 @@ namespace Contoso
 
         protected void Application_Start()
         {
-            Database.SetInitializer(new MyDbInitializer());
-            using MyDbContext db = new MyDbContext();
-            db.Database.Initialize(true);
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.MessageHandlers.Add(new APIKeyMessageHandler());
